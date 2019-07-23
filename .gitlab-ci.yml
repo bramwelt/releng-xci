@@ -1,0 +1,5 @@
+---
+verify:
+  tags:
+    - virtual
+  script: echo "Hello, world!"
