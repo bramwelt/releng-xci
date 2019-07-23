@@ -1,7 +1,7 @@
 ---
 variables:
   CI_LOOP: verify
-  CLEAN_DIB_IMAGES: true
+  CLEAN_DIB_IMAGES: 'true'
   XCI_SCRIPTS: https://raw.githubusercontent.com/opnfv/releng/master/jjb/xci
   GERRIT_CHANGE_NUMBER: $CI_PIPELINE_ID
   DISTRO: ubuntu
