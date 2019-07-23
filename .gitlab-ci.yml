@@ -1,5 +1,22 @@
 ---
-verify:
+variables:
+  CI_LOOP: verify
+  CLEAN_DIB_IMAGES: true
+  XCI_SCRIPTS: https://raw.githubusercontent.com/opnfv/releng/master/jjb/xci
+  GERRIT_CHANGE_NUMBER: $CI_PIPELINE_ID
+  DISTRO: ubuntu
+  WORK_DIRECTORY: $GIT_CLONE_PATH
+
+before_script:
+  - curl -L $XCI_SCRIPTS/xci-cleanup.sh | bash
+
+after_script:
+  - curl -L $XCI_SCRIPTS/xci-cleanup.sh | bash
+
+xci-verify.ubuntu.virtual.master:
   tags:
     - virtual
-  script: echo "Hello, world!"
+  script:
+    - xci-set-scenario.sh
+    - xci-start-new-vm.sh
+    - xci-start-deployment.sh
