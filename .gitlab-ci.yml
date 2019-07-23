@@ -8,6 +8,10 @@ variables:
   WORK_DIRECTORY: $GIT_CLONE_PATH
 
 before_script:
+  - |
+    if [[ ! -e ${HOME}/.ssh/id_rsa ]]; then
+      ssh-keygen -q -P '' -f ${HOME}/.ssh/id_rsa
+    fi
   - curl -L $XCI_SCRIPTS/xci-cleanup.sh | bash
 
 after_script:
@@ -17,6 +21,6 @@ xci-verify.ubuntu.virtual.master:
   tags:
     - virtual
   script:
-    - xci-set-scenario.sh
-    - xci-start-new-vm.sh
-    - xci-start-deployment.sh
+    - curl -L $XCI_SCRIPTS/xci-set-scenario.sh | bash
+    - curl -L $XCI_SCRIPTS/xci-start-new-vm.sh | bash
+    - curl -L $XCI_SCRIPTS/xci-start-deployment.sh | bash
