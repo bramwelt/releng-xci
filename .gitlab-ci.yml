@@ -2,10 +2,14 @@
 variables:
   CI_LOOP: verify
   CLEAN_DIB_IMAGES: 'true'
-  XCI_SCRIPTS: https://raw.githubusercontent.com/opnfv/releng/master/jjb/xci
-  GERRIT_CHANGE_NUMBER: $CI_PIPELINE_ID
+  DEPLOY_SCENARIO: k8-nosdn-nofeature
   DISTRO: ubuntu
-  WORK_DIRECTORY: $GIT_CLONE_PATH
+  WORKSPACE: $CI_PROJECT_DIR
+  GERRIT_CHANGE_NUMBER: $CI_PIPELINE_ID
+  GERRIT_PROJECT: releng-xci
+  INSTALLER_TYPE: kubespray
+  XCI_FLAVOR: mini
+  XCI_SCRIPTS: https://raw.githubusercontent.com/opnfv/releng/master/jjb/xci
 
 before_script:
   - |
